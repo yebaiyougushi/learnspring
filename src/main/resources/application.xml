@@ -7,12 +7,64 @@
         <property name="message" value="Hello World!"/>
     </bean>
     <bean id="textEditor" class="com.example.learnspring.main.TextEditor">
-        <constructor-arg ref="spellChecker"/>
+        <!--构造函数注入依赖-->
+        <!--<constructor-arg ref="spellChecker"/>-->
+        <!--设值函数注入依赖-->
+        <!--<property name="spellChecker" ref="spellChecker"/>-->
+        <!--注入内部类-->
+        <property name="spellChecker" >
+            <bean id="spellChecker" class="com.example.learnspring.main.SpellChecker">
+            </bean>
+        </property>
     </bean>
 
     <!-- Definition for spellChecker bean -->
-    <bean id="spellChecker" class="com.example.learnspring.main.SpellChecker">
-    </bean>
+    <!--<bean id="spellChecker" class="com.example.learnspring.main.SpellChecker">-->
+    <!--</bean>-->
     <bean class="com.example.learnspring.main.InitHelloWorld" />
+    <!-- Definition for javaCollection -->
+    <bean id="javaCollection" class="com.example.learnspring.collection.JavaCollection">
+
+        <!-- results in a setAddressList(java.util.List) call -->
+        <property name="addressList">
+            <list>
+                <value>INDIA</value>
+                <value>Pakistan</value>
+                <value>USA</value>
+                <value>USA</value>
+            </list>
+        </property>
+
+        <!-- results in a setAddressSet(java.util.Set) call -->
+        <property name="addressSet">
+            <set>
+                <value>INDIA</value>
+                <value>Pakistan</value>
+                <value>USA</value>
+                <value>USA</value>
+            </set>
+        </property>
+
+        <!-- results in a setAddressMap(java.util.Map) call -->
+        <property name="addressMap">
+            <map>
+                <entry key="1" value="INDIA"/>
+                <entry key="2" value="Pakistan"/>
+                <entry key="3" value="USA"/>
+                <entry key="4" value="USA"/>
+            </map>
+        </property>
+
+        <!-- results in a setAddressProp(java.util.Properties) call -->
+        <property name="addressProp">
+            <props>
+                <prop key="one">INDIA</prop>
+                <prop key="two">Pakistan</prop>
+                <prop key="three">USA</prop>
+                <prop key="four">USA</prop>
+            </props>
+        </property>
+
+    </bean>
 
 </beans>
